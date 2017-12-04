@@ -1,0 +1,201 @@
+# Lab topology
+#
+
+50:
+    mac: c0-a8-02-e5-00-00
+    type: D05
+    access: BMC50
+    power: PDU2,3
+
+51:
+    mac: c0-a8-02-e5-00-00
+    type: D05
+    access: BMC51
+    power: PDU2,3
+
+52:
+    mac: c0-a8-02-e5-00-00
+    type: D05
+    access: BMC52
+    power: PDU2,3
+
+53:
+    mac: c0-a8-02-e5-00-00
+    type: D05
+    access: BMC53
+    power: PDU2,3
+
+54:
+    mac: c0-a8-02-e5-00-00
+    type: D05
+    access: BMC54
+    power: PDU2,3
+
+55:
+    mac: c0-a8-02-e5-00-00
+    type: D05
+    access: BMC55
+    power: PDU2,3
+
+56:
+    mac: c0-a8-02-e5-00-00
+    type: D05
+    access: BMC56
+    power: PDU2,3
+
+57:
+    mac: c0-a8-02-e5-00-00
+    type: D05
+    access: BMC57
+    power: PDU2,3
+
+58:
+    mac: c0-a8-02-e5-00-00
+    type: D05
+    access: BMC58
+    power: PDU2,3
+
+59:
+    mac: c0-a8-02-e5-00-00
+    type: D05
+    access: BMC59
+    power: PDU2,3
+
+61:
+    mac: c0-a8-02-e5-00-00
+    type: D03
+    access: BMC61
+    power: PDU2,3
+
+62:
+    mac: c0-a8-02-e5-00-00
+    type: D05
+    access: BMC62
+    power: PDU2,3
+
+63:
+    mac: c0-a8-02-e5-00-00
+    type: D03
+    access: BMC63
+    power: PDU2,3
+
+64:
+    mac: c0-a8-02-e5-00-00
+    type: D03
+    access: BMC64
+    power: PDU2,3
+
+65:
+    mac: c0-a8-02-e5-00-00
+    type: D03
+    access: BMC65
+    power: PDU2,3
+
+66:
+    mac: c0-a8-02-e5-00-00
+    type: D05
+    access: BMC66
+    power: PDU2,3
+
+131:
+    mac: c0-a8-02-e5-00-00
+    type: D03
+    access: BMC131
+    power: PDU2,3
+
+132:
+    mac: c0-a8-02-e5-00-00
+    type: D03
+    access: BMC132
+    power: PDU2,3
+
+134:
+    mac: c0-a8-02-e5-00-00
+    type: D03
+    access: BMC134
+    power: PDU2,3
+
+136:
+    mac: c0-a8-02-e5-00-00
+    type: D05
+    access: BMC136
+    power: PDU2,3
+
+140:
+    mac: c0-a8-02-e5-00-00
+    type: D03
+    access: BMC140
+    power: PDU2,3
+
+141:
+    mac: c0-a8-02-e5-00-00
+    type: D03
+    access: BMC141
+    power: PDU2,3
+
+142:
+    mac: c0-a8-02-e5-00-00
+    type: D03
+    access: BMC142
+    power: PDU2,3
+
+143:
+    mac: c0-a8-02-e5-00-00
+    type: D03
+    access: BMC143
+    power: PDU2,3
+
+164:
+    mac: c0-a8-02-e5-00-00
+    type: D05
+    access: BMC164
+    power: PDU2,3
+
+165:
+    mac: c0-a8-02-e5-00-00
+    type: Cavium
+    access: BMC165
+    power: PDU2,3
+
+168:
+    mac: c0-a8-02-e5-00-00
+    type: D05
+    access: BMC168
+    power: PDU2,3
+
+171:
+    mac: c0-a8-02-e5-00-00
+    type: D05
+    access: BMC171
+    power: PDU2,3
+
+172:
+    mac: c0-a8-02-e5-00-01
+    type: D05
+    access: BMC172
+    power: PDU2,4
+
+173:
+    mac: c0-a8-02-e5-00-02
+    type: D05
+    access: BMC173
+    power: PDU2,4
+
+175:
+    mac: c0-a8-02-e5-00-02
+    type: D05
+    access: BMC175
+    power: PDU2,4
+
+177:
+    mac: c0-a8-02-e5-00-02
+    type: D05
+    access: BMC177
+    power: PDU2,4
+
+178:
+    mac: c0-a8-02-e5-00-02
+    type: D05
+    access: BMC178
+    power: PDU2,4
+

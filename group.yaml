@@ -1,0 +1,11 @@
+develop:
+    member: fengliang,liuxinliang
+    device: 132,134,164,172,175
+
+manual-test:
+    member: chenshuangsheng,mahongxing
+    device: 2,3,4
+
+auto-test:
+    member: asdkl,ksa
+    device: 5,6,7

@@ -1,0 +1,144 @@
+#!/usr/bin/python
+
+import yaml
+import getpass
+import os
+import commands
+import sys
+import bmc
+
+CONFIG_PATH = "/home/fengliang/bin/"
+
+user_name = getpass.getuser()
+
+topology = open(CONFIG_PATH + "device.yaml")
+dev_dict = yaml.load(topology)
+topology.close()
+
+bmc_file = open(CONFIG_PATH + "bmc.yaml")
+bmc_dict = yaml.load(bmc_file)
+bmc_file.close()
+
+group_file = open(CONFIG_PATH + "group.yaml")
+group_dict = yaml.load(group_file)
+group_file.close()
+
+
+def bmc_get_bind_user(ip):
+    # find out all devices in using
+    cmdline = "ps -o ruser=userForLongName -e -o cmd | grep ipmitool"
+    proc = os.popen(cmdline).read()
+    return proc
+
+
+def get_bind_user(access, ip):
+    if access == 'BMC':
+        cmdline = "ps -o ruser=userForLongName -e -o cmd | grep ipmitool"
+    else:
+        cmdline = "ps -o ruser=userForLongName -e -o cmd | grep telnet"
+
+    cmdline += ' | grep ' + ip
+
+    proc = commands.getoutput(cmdline)
+    return proc
+
+# find out all devices for me
+for team in group_dict.keys():
+    member_list = group_dict[team]['member']
+    if user_name in member_list:
+        my_devices = group_dict[team]['device']
+
+
+def list_devices():
+    # list all device
+    for name in dev_dict.keys():
+        if str(name) in my_devices:
+            print "%6s * %9s %-12s" % (name, dev_dict[name]['type'], user_name)
+        else:
+            print "%6s   %9s %-12s" % (name, dev_dict[name]['type'], user_name)
+
+
+usage = '''\
+usage: device [--version] [--help] [-C <path>] [-c name=value]
+[--exec-path[=<path>]] [--html-path] [--man-path] [--info-path]
+[-p|--paginate|--no-pager] [--no-replace-objects] [--bare]
+[--git-dir=<path>] [--work-tree=<path>] [--namespace=<name>]
+<command> [<args>]
+
+The most commonly used git commands are:
+    bind       Add file contents to the index
+    poweron    Find by binary search the change that introduced a bug
+    poweroff   List, create, or delete branches
+    reset      Reset current HEAD to the specified state
+    status     Show the working tree status
+'''
+
+
+def help():
+    print(usage)
+
+
+def version():
+    print("device version 1.0.0")
+
+
+def device_bind(name):
+    for device in dev_dict.keys():
+        if name == str(device):
+            tty = dev_dict[device]['access']
+            bmc.bind_device(bmc_dict[tty]['ip'])
+            return
+
+    print('Cannot bind \"%s\": No such device or permission denied' % name)
+
+
+def device_status(name):
+    print('device status %s' % name)
+
+
+def device_poweron(name):
+    for device in dev_dict.keys():
+        if name == str(device):
+            tty = dev_dict[device]['access']
+            bmc.poweron_device(bmc_dict[tty]['ip'])
+            return
+    print('Cannot poweron \"%s\": No such device or permission denied' % name)
+
+
+def device_poweroff(name):
+    for device in dev_dict.keys():
+        if name == str(device):
+            tty = dev_dict[device]['access']
+            bmc.poweroff_device(bmc_dict[tty]['ip'])
+            return
+    print('Cannot poweroff \"%s\": No such device or permission denied' % name)
+
+
+def device_reset(name):
+    for device in dev_dict.keys():
+        if name == str(device):
+            tty = dev_dict[device]['access']
+            bmc.reset_device(bmc_dict[tty]['ip'])
+            return
+    print('Cannot reset \"%s\": No such device or permission denied' % name)
+
+if 1 == len(sys.argv):
+    list_devices()
+    sys.exit(0)
+
+if 'bind' == sys.argv[1]:
+    device_bind(sys.argv[2])
+elif 'poweron' == sys.argv[1]:
+    device_poweron(sys.argv[2])
+elif 'poweroff' == sys.argv[1]:
+    device_poweroff(sys.argv[2])
+elif 'reset' == sys.argv[1]:
+    device_reset(sys.argv[2])
+elif 'status' == sys.argv[1]:
+    device_status(sys.argv[2])
+elif 'version' == sys.argv[1]:
+    version()
+elif 'help' == sys.argv[1]:
+    help()
+else:
+    print('Option \"%s\" is unknown, try "device help"' % sys.argv[1])

@@ -1,0 +1,32 @@
+# BMC topology
+#
+
+BMC141:
+    ip: 192.168.1.141
+    interface: lanplus
+    account: root
+    password: Huawei12#$
+
+BMC143:
+    ip: 192.168.1.143
+    interface: lanplus
+    account: root
+    password: Huawei12#$
+
+BMC171:
+    ip: 192.168.1.171
+    interface: lanplus
+    account: root
+    password: Huawei12#$
+
+BMC172:
+    ip: 192.168.1.172
+    interface: lanplus
+    account: root
+    password: Huawei12#$
+
+BMC173:
+    ip: 192.168.1.173
+    interface: lanplus
+    account: root
+    password: Huawei12#$
