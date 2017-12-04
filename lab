@@ -9,7 +9,7 @@ import bmc
 
 CONFIG_PATH = "/home/fengliang/bin/"
 
-user_name = getpass.getuser()
+user = getpass.getuser()
 
 topology = open(CONFIG_PATH + "device.yaml")
 dev_dict = yaml.load(topology)
@@ -45,17 +45,17 @@ def get_bind_user(access, ip):
 # find out all devices for me
 for team in group_dict.keys():
     member_list = group_dict[team]['member']
-    if user_name in member_list:
+    if user in member_list:
         my_devices = group_dict[team]['device']
 
 
 def list_devices():
-    # list all device
-    for name in dev_dict.keys():
-        if str(name) in my_devices:
-            print "%6s * %9s %-12s" % (name, dev_dict[name]['type'], user_name)
+    # list all devices
+    for device in dev_dict.keys():
+        if str(device) in my_devices.split(','):
+            print "%6s * %9s %-12s" % (device, dev_dict[device]['type'], user)
         else:
-            print "%6s   %9s %-12s" % (name, dev_dict[name]['type'], user_name)
+            print "%6s   %9s %-12s" % (device, dev_dict[device]['type'], user)
 
 
 usage = '''\
