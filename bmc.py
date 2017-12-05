@@ -36,3 +36,9 @@ def poweroff_device(ip):
         chassis power off' % ip
     os.system(cmdline)
     return 0
+
+def device_status(ip):
+    cmdline = 'ipmitool -H %s -I lanplus -U root -P Huawei12#$\
+        chassis status' % ip
+    os.system(cmdline)
+    return 0

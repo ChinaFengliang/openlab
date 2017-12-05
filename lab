@@ -106,12 +106,16 @@ def device_bind(name):
             tty = dev_dict[device]['access']
             bmc.bind_device(bmc_dict[tty]['ip'])
             return
-
     print('Cannot bind \"%s\": No such device or permission denied' % name)
 
 
 def device_status(name):
-    print('device status %s' % name)
+    for device in dev_dict.keys():
+        if name == str(device):
+            tty = dev_dict[device]['access']
+            bmc.device_status(bmc_dict[tty]['ip'])
+            return
+    print('Cannot poweron \"%s\": No such device or permission denied' % name)
 
 
 def device_poweron(name):
