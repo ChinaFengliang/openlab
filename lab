@@ -23,6 +23,8 @@ group_file = open(CONFIG_PATH + "group.yaml")
 group_dict = yaml.load(group_file)
 group_file.close()
 
+links = ''
+
 
 def bmc_get_bind_user(ip):
     # find out all devices in using
@@ -46,10 +48,7 @@ def get_bind_user(access, ip):
 for team in group_dict.keys():
     member_list = group_dict[team]['member']
     if myself in member_list:
-        my_devices = group_dict[team]['device']
-
-
-links = ''
+        my_devices = group_dict[team]['device'].split(',')
 
 
 def get_bind_owner(ip):
@@ -70,7 +69,8 @@ def list_devices():
     for device in dev_dict.keys():
         tty = dev_dict[device]['access']
         owner = get_bind_owner(bmc_dict[tty]['ip'])
-        if str(device) in my_devices.split(','):
+        global my_devices
+        if str(device) in my_devices:
             print "%6s * %9s %-12s" % (device, dev_dict[device]['type'], owner)
         else:
             print "%6s   %9s %-12s" % (device, dev_dict[device]['type'], owner)
@@ -101,11 +101,13 @@ def version():
 
 
 def device_bind(name):
-    for device in dev_dict.keys():
-        if name == str(device):
-            tty = dev_dict[device]['access']
-            bmc.bind_device(bmc_dict[tty]['ip'])
-            return
+    if name in my_devices:
+        for device in dev_dict.keys():
+            if name == str(device):
+                tty = dev_dict[device]['access']
+                bmc.bind_device(bmc_dict[tty]['ip'])
+                return
+
     print('Cannot bind \"%s\": No such device or permission denied' % name)
 
 
