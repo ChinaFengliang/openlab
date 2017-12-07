@@ -24,6 +24,7 @@ group_dict = yaml.load(group_file)
 group_file.close()
 
 links = ''
+my_devices = []
 
 
 def bmc_get_bind_user(ip):
@@ -44,11 +45,14 @@ def get_bind_user(access, ip):
     proc = commands.getoutput(cmdline)
     return proc
 
-# find out all devices for me
-for team in group_dict.keys():
-    member_list = group_dict[team]['member']
-    if myself in member_list:
-        my_devices = group_dict[team]['device'].split(',')
+
+def get_my_devices():
+    # find out all devices for me
+    for team in group_dict.keys():
+        member_list = group_dict[team]['member']
+        if myself in member_list:
+            global my_devices
+            my_devices += group_dict[team]['device'].split(',')
 
 
 def get_bind_owner(ip):
@@ -145,6 +149,9 @@ def device_reset(name):
             bmc.reset_device(bmc_dict[tty]['ip'])
             return
     print('Cannot reset \"%s\": No such device or permission denied' % name)
+
+
+get_my_devices()
 
 if 1 == len(sys.argv):
     list_devices()
