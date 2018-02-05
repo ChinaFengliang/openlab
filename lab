@@ -158,10 +158,19 @@ if 1 == len(sys.argv):
     sys.exit(0)
 
 if 'bind' == sys.argv[1]:
+    if 2 == len(sys.argv):
+        help()
+        sys.exit(-1)
     device_bind(sys.argv[2])
 elif 'poweron' == sys.argv[1]:
+    if 2 == len(sys.argv):
+        help()
+        sys.exit(-1)
     device_poweron(sys.argv[2])
 elif 'poweroff' == sys.argv[1]:
+    if 2 == len(sys.argv):
+        help()
+        sys.exit(-1)
     device_poweroff(sys.argv[2])
 elif 'reset' == sys.argv[1]:
     device_reset(sys.argv[2])
