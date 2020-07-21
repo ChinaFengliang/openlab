@@ -170,10 +170,10 @@ BMC171:
     password: Huawei12#$
 
 BMC172:
-    ip: 192.168.1.172
+    ip: 192.168.1.76
     interface: lanplus
     account: root
-    password: Huawei12#$
+    password: 0penBmc
 
 BMC173:
     ip: 192.168.1.173
@@ -182,10 +182,10 @@ BMC173:
     password: Huawei12#$
 
 BMC175:
-    ip: 192.168.1.175
+    ip: 192.168.1.100
     interface: lanplus
     account: root
-    password: Huawei12#$
+    password: 0penBmc
 
 BMC177:
     ip: 192.168.1.177

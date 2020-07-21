@@ -147,7 +147,7 @@
 
 164:
     mac: c0-a8-02-e5-00-00
-    type: D05
+    type: Taishan
     access: BMC164
     power: PDU2,3
 
@@ -159,7 +159,7 @@
 
 168:
     mac: c0-a8-02-e5-00-00
-    type: D05
+    type: RM5000
     access: BMC168
     power: PDU2,3
 
@@ -171,7 +171,7 @@
 
 172:
     mac: c0-a8-02-e5-00-01
-    type: D05
+    type: F601
     access: BMC172
     power: PDU2,4
 
@@ -183,7 +183,7 @@
 
 175:
     mac: c0-a8-02-e5-00-02
-    type: D05
+    type: F220
     access: BMC175
     power: PDU2,4
 

@@ -91,8 +91,8 @@ The most commonly used git commands are:
     bind       Add file contents to the index
     poweron    Find by binary search the change that introduced a bug
     poweroff   List, create, or delete branches
-    reset      Reset current HEAD to the specified state
-    status     Show the working tree status
+    reboot      Reboot machine
+    status     Show the machine status
 '''
 
 
@@ -109,7 +109,9 @@ def device_bind(name):
         for device in dev_dict.keys():
             if name == str(device):
                 tty = dev_dict[device]['access']
-                bmc.bind_device(bmc_dict[tty]['ip'])
+                bmc.bind_device(bmc_dict[tty]['ip'], \
+                                bmc_dict[tty]['account'], \
+                                bmc_dict[tty]['password'])
                 return
 
     print('Cannot bind \"%s\": No such device or permission denied' % name)
@@ -119,7 +121,9 @@ def device_status(name):
     for device in dev_dict.keys():
         if name == str(device):
             tty = dev_dict[device]['access']
-            bmc.device_status(bmc_dict[tty]['ip'])
+            bmc.device_status(bmc_dict[tty]['ip'], \
+                              bmc_dict[tty]['account'], \
+                              bmc_dict[tty]['password'])
             return
     print('Cannot poweron \"%s\": No such device or permission denied' % name)
 
@@ -128,7 +132,9 @@ def device_poweron(name):
     for device in dev_dict.keys():
         if name == str(device):
             tty = dev_dict[device]['access']
-            bmc.poweron_device(bmc_dict[tty]['ip'])
+            bmc.poweron_device(bmc_dict[tty]['ip'], \
+                               bmc_dict[tty]['account'], \
+                               bmc_dict[tty]['password'])
             return
     print('Cannot poweron \"%s\": No such device or permission denied' % name)
 
@@ -137,18 +143,22 @@ def device_poweroff(name):
     for device in dev_dict.keys():
         if name == str(device):
             tty = dev_dict[device]['access']
-            bmc.poweroff_device(bmc_dict[tty]['ip'])
+            bmc.poweroff_device(bmc_dict[tty]['ip'], \
+                                bmc_dict[tty]['account'], \
+                                bmc_dict[tty]['password'])
             return
     print('Cannot poweroff \"%s\": No such device or permission denied' % name)
 
 
-def device_reset(name):
+def device_reboot(name):
     for device in dev_dict.keys():
         if name == str(device):
             tty = dev_dict[device]['access']
-            bmc.reset_device(bmc_dict[tty]['ip'])
+            bmc.reboot_device(bmc_dict[tty]['ip'], \
+                             bmc_dict[tty]['account'], \
+                             bmc_dict[tty]['password'])
             return
-    print('Cannot reset \"%s\": No such device or permission denied' % name)
+    print('Cannot reboot \"%s\": No such device or permission denied' % name)
 
 
 if __name__ == "__main__":
@@ -173,8 +183,8 @@ if __name__ == "__main__":
             help()
             sys.exit(-1)
         device_poweroff(sys.argv[2])
-    elif 'reset' == sys.argv[1]:
-        device_reset(sys.argv[2])
+    elif 'reboot' == sys.argv[1]:
+        device_reboot(sys.argv[2])
     elif 'status' == sys.argv[1]:
         device_status(sys.argv[2])
     elif 'version' == sys.argv[1]:
