@@ -116,6 +116,19 @@ def device_bind(name):
 
     print('Cannot bind \"%s\": No such device or permission denied' % name)
 
+def device_unbind(name):
+    if name in my_devices:
+        for device in dev_dict.keys():
+            if name == str(device):
+                tty = dev_dict[device]['access']
+                bmc.unbind_device(bmc_dict[tty]['ip'], \
+                                  bmc_dict[tty]['account'], \
+                                  bmc_dict[tty]['password'])
+                return
+
+    print('Cannot bind \"%s\": No such device or permission denied' % name)
+
+
 
 def device_status(name):
     for device in dev_dict.keys():
@@ -173,6 +186,11 @@ if __name__ == "__main__":
             help()
             sys.exit(-1)
         device_bind(sys.argv[2])
+    elif 'unbind' == sys.argv[1]:
+        if 2 == len(sys.argv):
+            help()
+            sys.exit(-1)
+        device_unbind(sys.argv[2])
     elif 'poweron' == sys.argv[1]:
         if 2 == len(sys.argv):
             help()
