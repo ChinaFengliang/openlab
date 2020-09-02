@@ -61,42 +61,6 @@
     access: BMC59
     power: PDU2,3
 
-61:
-    mac: c0-a8-02-e5-00-00
-    type: D03
-    access: BMC61
-    power: PDU2,3
-
-62:
-    mac: c0-a8-02-e5-00-00
-    type: D05
-    access: BMC62
-    power: PDU2,3
-
-63:
-    mac: c0-a8-02-e5-00-00
-    type: D03
-    access: BMC63
-    power: PDU2,3
-
-64:
-    mac: c0-a8-02-e5-00-00
-    type: D03
-    access: BMC64
-    power: PDU2,3
-
-65:
-    mac: c0-a8-02-e5-00-00
-    type: D03
-    access: BMC65
-    power: PDU2,3
-
-66:
-    mac: c0-a8-02-e5-00-00
-    type: D05
-    access: BMC66
-    power: PDU2,3
-
 131:
     mac: c0-a8-02-e5-00-00
     type: D03
@@ -182,7 +146,7 @@
     power: PDU2,4
 
 175:
-    mac: c0-a8-02-e5-00-02
+    mac: 00-07-3e-97-2d-41
     type: F220
     access: BMC175
     power: PDU2,4
